@@ -1,0 +1,38 @@
+{
+  "name": "cviebrock/laravel-mangopay",
+  "description": "Laravel/Lumen wrapper for the office Mangopay SDK library",
+  "keywords": [
+    "laravel",
+    "mangopay",
+    "payments"
+  ],
+  "authors": [
+    {
+      "name": "Colin Viebrock",
+      "email": "colin@viebrock.ca"
+    }
+  ],
+  "license": "MIT",
+  "require": {
+    "php": ">=5.6.0",
+    "illuminate/support": "~5.1|~5.2",
+    "mangopay/php-sdk-v2": "^2.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.*",
+    "orchestra/testbench": "^3.1.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Cviebrock\\LaravelMangopay\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Cviebrock\\LaravelMangopay\\Test\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "phpunit"
+  }
+}
