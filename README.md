@@ -1,7 +1,7 @@
 # Laravel-Mangopay Integration
 
 This package makes it easier (hopefully!) to integrate the official
-Mangopay SDK into your Laravel 5 application.
+[Mangopay SDK](https://github.com/Mangopay/mangopay2-php-sdk) into your Laravel and Lumen applications.
 
 [![Build Status](https://travis-ci.org/cviebrock/laravel-mangopay.svg)](https://travis-ci.org/cviebrock/laravel-mangopay)
 [![Total Downloads](https://poser.pugx.org/cviebrock/laravel-mangopay/downloads.png)](https://packagist.org/packages/cviebrock/laravel-mangopay)
@@ -119,15 +119,16 @@ class MyController extends Illuminate\Routing\Controller
 Thanks to [everyone](/cviebrock/laravel-mangopay/graphs/contributors) who has contributed 
 to this project!
 
-Please use Github for bugs, comments and suggestions.
+Please use [Github](https://github.com/cviebrock/laravel-mangopay) for reporting bugs, 
+and making comments or suggestions.
  
-See <CONTRIBUTING.md> for how to contribute changes.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for how to contribute changes.
 
 
 <a name="copyright"></a>
 ## Copyright and License
 
 laravel-mangopay was written by Colin Viebrock and released under the MIT License. 
-See the <LICENSE.md> file for details.
+See [LICENSE.md](LICENSE.md) file for details.
 
-Copyright 2013 Colin Viebrock
+Copyright (c) 2016 Colin Viebrock
