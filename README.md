@@ -8,16 +8,16 @@ This package makes it easier (hopefully!) to integrate the official
 [![Latest Stable Version](https://poser.pugx.org/cviebrock/laravel-mangopay/v/stable.png)](https://packagist.org/packages/cviebrock/laravel-mangopay)
 [![Latest Stable Version](https://poser.pugx.org/cviebrock/laravel-mangopay/v/unstable.png)](https://packagist.org/packages/cviebrock/laravel-mangopay)
 
+
 * [Installation](#installation)
   * [Laravel](#laravel)
   * [Lumen](#lumen)
 * [Usage](#usage)
-* [Bugs, Suggestions and Contributions](#contributing)
-* [Copyright and License](#copyright)
+* [Bugs, Suggestions and Contributions](#bugs-suggestions-and-contributions)
+* [Copyright and License](#copyright-and-license)
   
 
-<a name="installation"></a>
-# Installation
+## Installation
 
 Installation is done via Composer:
 
@@ -26,8 +26,8 @@ composer require cviebrock\laravel-mangopay
 ```
 
 
-<a name="laravel"></a>
-## Laravel
+
+### Laravel
 
 After updating composer, add the service provider to the providers array in `config/app.php`:
 
@@ -55,8 +55,8 @@ Finally, copy the package config to your local config with the publish command:
 php artisan vendor:publish --provider="Cviebrock\LaravelMangopay\ServiceProvider"
 ```
 
-<a name="lumen"></a>
-## Lumen
+
+### Lumen
 
 For Lumen, copy the configuration file to your `config` folder and enable 
 everything in `bootstrap/app.php`:
@@ -73,8 +73,8 @@ if (!class_exists('Mangopay')) {
 ```
 
 
-<a name="usage"></a>
-# Usage
+
+## Usage
 
 All this package really does is make instantiating the `MangopayAPI` easy by 
 putting the configuration into Laravel/Lumen's config system.
@@ -113,7 +113,7 @@ class MyController extends Illuminate\Routing\Controller
 }
 ```
 
-<a name="contributing"></a>
+
 ## Bugs, Suggestions and Contributions
 
 Thanks to [everyone](/cviebrock/laravel-mangopay/graphs/contributors) who has contributed 
@@ -125,7 +125,7 @@ and making comments or suggestions.
 See [CONTRIBUTING.md](CONTRIBUTING.md) for how to contribute changes.
 
 
-<a name="copyright"></a>
+
 ## Copyright and License
 
 laravel-mangopay was written by Colin Viebrock and released under the MIT License. 
