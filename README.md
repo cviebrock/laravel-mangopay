@@ -22,7 +22,7 @@ This package makes it easier (hopefully!) to integrate the official
 Installation is done via Composer:
 
 ```sh
-composer require cviebrock\laravel-mangopay
+composer require cviebrock/laravel-mangopay
 ```
 
 
