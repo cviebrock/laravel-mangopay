@@ -3,6 +3,7 @@
   "description": "Laravel/Lumen wrapper for the office Mangopay SDK library",
   "keywords": [
     "laravel",
+    "lumen",
     "mangopay",
     "payments"
   ],
