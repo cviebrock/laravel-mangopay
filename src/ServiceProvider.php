@@ -1,11 +1,23 @@
 <?php namespace Cviebrock\LaravelMangopay;
 
+use Cviebrock\LaravelMangopay\Commands\CreateDirectories;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
+use InvalidArgumentException;
 use MangoPay\MangoPayApi;
-
 
 class ServiceProvider extends IlluminateServiceProvider
 {
+
+    /**
+     * The Mangopay URLs used by the API
+     *
+     * @var array
+     */
+    protected $baseUrls = [
+        'sandbox'    => 'https://api.sandbox.mangopay.com',
+        'production' => 'https://api.mangopay.com',
+    ];
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -22,7 +34,7 @@ class ServiceProvider extends IlluminateServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../resources/config/laravel-mangopay.php' => $this->app->configPath() . '/' . 'laravel-mangopay.php',
+            __DIR__ . '/../resources/config/mangopay.php' => $this->app->configPath() . '/' . 'mangopay.php',
         ], 'config');
     }
 
@@ -33,22 +45,67 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../resources/config/laravel-mangopay.php', 'laravel-mangopay');
+        $this->app->singleton(MangoPayApi::class, function (Application $app) {
 
-        $this->app->singleton(MangoPayApi::class, function ($app) {
+            // Load the configuration and instantiate the API
 
-            $config = $app['config']['laravel-mangopay'];
+            $config = $app['config']['services.mangopay'];
             $api = new MangoPayApi();
 
-            // use the Laravel logger (can be overridden in the config file)
-            $api->setLogger($app['log']);
-            
-            foreach ($config as $property => $value) {
-                $api->Config->{$property} = $value;
+            // Set the client id and password
+
+            if (!$clientId = array_get($config, 'key')) {
+                throw new InvalidArgumentException('Mangopay key not configured');
             }
+
+            if (!$clientPassword = array_get($config, 'secret')) {
+                throw new InvalidArgumentException('Mangopay secret not configured');
+            }
+
+            if (!$env = array_get($config, 'env')) {
+                throw new InvalidArgumentException('Mangopay environment not configured');
+            }
+
+            $api->Config->ClientId = $clientId;
+            $api->Config->ClientPassword = $clientPassword;
+
+            // Set the base URL based on the environment defined in config
+
+            if (!$url = array_get($this->baseUrls, $env)) {
+                throw new InvalidArgumentException('Mangopay environment should be one of: ' .
+                    join(', ', array_keys($this->baseUrls)));
+            }
+            $api->Config->BaseUrl = $url;
+
+            // Use the Laravel logger
+
+            $api->setLogger($app['log']);
+
+            // Set a default temp folder (can be overridden in the config,
+            // but should be different for each environment according to
+            // the Mangopay SDK specifications)
+
+            $path = storage_path('mangopay' . DIRECTORY_SEPARATOR . $env . DIRECTORY_SEPARATOR);
+            $api->Config->TemporaryFolder = $path;
+
+            // Set any extra options specified in the configuration
+
+            if ($extras = $app['config']['mangopay']) {
+                foreach ($extras as $property => $value) {
+                    $api->Config->{$property} = $value;
+                }
+            }
+
+            // Return the configured API client
 
             return $api;
         });
+
+        $this->app->bind('command.mangopay:mkdir', CreateDirectories::class);
+
+        $this->commands([
+            'command.mangopay:mkdir',
+        ]);
     }
 
     /**

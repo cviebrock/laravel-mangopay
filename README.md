@@ -12,6 +12,7 @@ This package makes it easier (hopefully!) to integrate the official
 * [Installation](#installation)
   * [Laravel](#laravel)
   * [Lumen](#lumen)
+* [Configuration](#configuration)
 * [Usage](#usage)
 * [Bugs, Suggestions and Contributions](#bugs-suggestions-and-contributions)
 * [Copyright and License](#copyright-and-license)
@@ -27,8 +28,6 @@ Installation is done via Composer:
 composer require cviebrock/laravel-mangopay
 ```
 
-
-
 ### Laravel
 
 After updating composer, add the service provider to the providers array in `config/app.php`:
@@ -41,7 +40,7 @@ After updating composer, add the service provider to the providers array in `con
 ];
 ```
 
-And, if you really want, you can add the facade entry to that configuration file as well:
+If you really want, you can add the facade entry to that configuration file as well:
 
 ```php
 'aliases' => [
@@ -51,10 +50,12 @@ And, if you really want, you can add the facade entry to that configuration file
 ]
 ```
 
-Finally, copy the package config to your local config with the publish command:
+Finally, publish the package config to your application and generate the required
+temporary directories with the following artisan commands:
 
 ```sh
 php artisan vendor:publish --provider="Cviebrock\LaravelMangopay\ServiceProvider"
+php artisan mangopay:mkdir  
 ```
 
 
@@ -64,7 +65,7 @@ For Lumen, copy the configuration file to your `config` folder and enable
 everything in `bootstrap/app.php`:
 
 ```php
-$app->configure('laravel-mangopay');
+$app->configure('mangopay');
 
 $app->register(Cviebrock\LaravelMangopay\LumenServiceProvider::class);
 
@@ -73,6 +74,35 @@ if (!class_exists('Mangopay')) {
     class_alias('Cviebrock\LaravelMangopay\Facades\Mangopay', 'Mangopay');
 }
 ```
+
+Last, generate the required temporary directories with the following artisan command:
+
+```sh
+php artisan mangopay:mkdir  
+```
+
+
+## Configuration
+
+This package supports authentication configuration through the services configuration file located
+in `config/services.php`. Add the following block to that file, and set the appropriate
+values in your `.env` file:
+
+```php
+  'mangopay' => [
+      'env'    => env('MANGOPAY_ENV', 'sandbox'),  // or "production"
+      'key'    => env('MANGOPAY_KEY'),             // your Mangopay client ID
+      'secret' => env('MANGOPAY_SECRET'),          // your Mangopay client password
+  ],
+```
+
+The configuration file you can publish to `config/mangopay.php` provides additional
+properties that can be passed to the MangopayAPI object when it is instantiated.  In
+most cases, you won't need to change anything here, so you can choose to not publish this
+configuration, or have it simply return an empty array.
+  
+If you do use this file, see the SDK documentation for the various properties that can be set
+(basically any public property on the `MangoPay\Libraries\Configuration` class).
 
 
 
@@ -113,6 +143,18 @@ class MyController extends Illuminate\Routing\Controller
         // etc.
     }
 }
+```
+
+If you _really_ want to use facades, you can do that too:
+
+```php
+    public function doStuff($someId)
+    {
+        // get some user by id
+        $john = Mangopay::Users->Get($someId);
+
+        // etc.
+    }
 ```
 
 
