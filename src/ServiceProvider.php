@@ -6,18 +6,15 @@ use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 use InvalidArgumentException;
 use MangoPay\MangoPayApi;
 
+
 class ServiceProvider extends IlluminateServiceProvider
 {
 
     /**
      * The Mangopay URLs used by the API
-     *
-     * @var array
      */
-    protected $baseUrls = [
-        'sandbox'    => 'https://api.sandbox.mangopay.com',
-        'production' => 'https://api.mangopay.com',
-    ];
+    const BASE_URL_SANDBOX = 'https://api.sandbox.mangopay.com';
+    const BASE_URL_PRODUCTION = 'https://api.mangopay.com';
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -83,11 +80,7 @@ class ServiceProvider extends IlluminateServiceProvider
 
             // Set the base URL based on the environment defined in config
 
-            if (!$url = array_get($this->baseUrls, $env)) {
-                throw new InvalidArgumentException('Mangopay environment should be one of: ' .
-                    join(', ', array_keys($this->baseUrls)));
-            }
-            $api->Config->BaseUrl = $url;
+            $api->Config->BaseUrl = $this->getURL($env);
 
             // Use the Laravel logger
 
@@ -128,5 +121,20 @@ class ServiceProvider extends IlluminateServiceProvider
     public function provides()
     {
         return [MangoPayApi::class];
+    }
+
+    /**
+     * Return the appropriate API URL based on the environment.
+     *
+     * @param $environment
+     * @return string
+     */
+    public function getURL($environment)
+    {
+        try {
+            return constant('self::BASE_URL_' . strtoupper($environment));
+        } catch (\Exception $e) {
+            throw new InvalidArgumentException('Mangopay environment should be one of "sandbox" or "production"');
+        }
     }
 }
