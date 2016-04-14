@@ -45,7 +45,7 @@ We accept contributions via pull requests via [Github](https://github.com/cviebr
 Because Mangopay doesn't provide a public test key/secret we can use, then you will 
 need to provide your own credentials when running the test suite.
 
-Simply copy the `.env.example` file to `.env` and fill in the values, just like you
+Simply copy the `.test.env.example` file to `.test.env` and fill in the values, just like you
 would when using the package in your application.
 
 Then, running the tests should be as easy as:
