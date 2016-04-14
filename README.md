@@ -9,6 +9,7 @@ This package makes it easier (hopefully!) to integrate the official
 [![Latest Unstable Version](https://poser.pugx.org/cviebrock/laravel-mangopay/v/unstable?format=flat)](https://packagist.org/packages/cviebrock/laravel-mangopay)
 [![License](https://poser.pugx.org/cviebrock/laravel-mangopay/license?format=flat)](https://packagist.org/packages/cviebrock/laravel-mangopay)
 
+---
 
 * [Installation](#installation)
   * [Laravel](#laravel)
