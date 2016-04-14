@@ -39,6 +39,10 @@ class ServiceProvider extends IlluminateServiceProvider
 
             $config = $app['config']['laravel-mangopay'];
             $api = new MangoPayApi();
+
+            // use the Laravel logger (can be overridden in the config file)
+            $api->setLogger($app['log']);
+            
             foreach ($config as $property => $value) {
                 $api->Config->{$property} = $value;
             }
