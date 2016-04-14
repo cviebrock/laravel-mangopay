@@ -27,15 +27,27 @@ class ServiceProvider extends IlluminateServiceProvider
     protected $defer = true;
 
     /**
+     * Determine if this is a Lumen application.
+     *
+     * @return bool
+     */
+    protected function isLumen()
+    {
+        return str_contains($this->app->version(), 'Lumen');
+    }
+
+    /**
      * Bootstrap the application services.
      *
      * @return void
      */
     public function boot()
     {
-        $this->publishes([
-            __DIR__ . '/../resources/config/mangopay.php' => $this->app->configPath() . '/' . 'mangopay.php',
-        ], 'config');
+        if (!$this->isLumen()) {
+            $this->publishes([
+                __DIR__ . '/../resources/config/mangopay.php' => $this->app->configPath() . '/' . 'mangopay.php',
+            ], 'config');
+        }
     }
 
     /**

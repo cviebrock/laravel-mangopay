@@ -40,17 +40,7 @@ After updating composer, add the service provider to the providers array in `con
 ];
 ```
 
-If you really want, you can add the facade entry to that configuration file as well:
-
-```php
-'aliases' => [
-    ...
-    'Mangopay' => Cviebrock\LaravelMangopay\Facades\Mangopay::class,
-    ...
-]
-```
-
-Finally, publish the package config to your application and generate the required
+Publish the package config to your application and generate the required
 temporary directories with the following artisan commands:
 
 ```sh
@@ -67,15 +57,10 @@ everything in `bootstrap/app.php`:
 ```php
 $app->configure('mangopay');
 
-$app->register(Cviebrock\LaravelMangopay\LumenServiceProvider::class);
-
-// Register the facade, if you must
-if (!class_exists('Mangopay')) {
-    class_alias('Cviebrock\LaravelMangopay\Facades\Mangopay', 'Mangopay');
-}
+$app->register(Cviebrock\LaravelMangopay\ServiceProvider::class);
 ```
 
-Last, generate the required temporary directories with the following artisan command:
+Generate the required temporary directories with the following artisan command:
 
 ```sh
 php artisan mangopay:mkdir  
@@ -145,17 +130,6 @@ class MyController extends Illuminate\Routing\Controller
 }
 ```
 
-If you _really_ want to use facades, you can do that too:
-
-```php
-    public function doStuff($someId)
-    {
-        // get some user by id
-        $john = Mangopay::Users->Get($someId);
-
-        // etc.
-    }
-```
 
 
 ## Bugs, Suggestions and Contributions
