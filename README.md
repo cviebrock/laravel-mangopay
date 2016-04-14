@@ -3,10 +3,11 @@
 This package makes it easier (hopefully!) to integrate the official
 [Mangopay SDK](https://github.com/Mangopay/mangopay2-php-sdk) into your Laravel and Lumen applications.
 
-[![Build Status](https://travis-ci.org/cviebrock/laravel-mangopay.svg)](https://travis-ci.org/cviebrock/laravel-mangopay)
-[![Total Downloads](https://poser.pugx.org/cviebrock/laravel-mangopay/downloads.png)](https://packagist.org/packages/cviebrock/laravel-mangopay)
-[![Latest Stable Version](https://poser.pugx.org/cviebrock/laravel-mangopay/v/stable.png)](https://packagist.org/packages/cviebrock/laravel-mangopay)
-[![Latest Stable Version](https://poser.pugx.org/cviebrock/laravel-mangopay/v/unstable.png)](https://packagist.org/packages/cviebrock/laravel-mangopay)
+[![Build Status](https://travis-ci.org/cviebrock/laravel-mangopay.svg?branch=master&format=flat-square)](https://travis-ci.org/cviebrock/laravel-mangopay)
+[![Total Downloads](https://poser.pugx.org/cviebrock/laravel-mangopay/downloads?format=flat-square)](https://packagist.org/packages/cviebrock/laravel-mangopay)
+[![Latest Stable Version](https://poser.pugx.org/cviebrock/laravel-mangopay/v/stable?format=flat-square)](https://packagist.org/packages/cviebrock/laravel-mangopay)
+[![Latest Unstable Version](https://poser.pugx.org/cviebrock/laravel-mangopay/v/unstable?format=flat-square)](https://packagist.org/packages/cviebrock/laravel-mangopay)
+[![License](https://poser.pugx.org/cviebrock/laravel-mangopay/license?format=flat-square)](https://packagist.org/packages/cviebrock/laravel-mangopay)
 
 
 * [Installation](#installation)
@@ -33,7 +34,7 @@ After updating composer, add the service provider to the providers array in `con
 
 ```php
 'providers' => [
-		...
+    ...
     Cviebrock\LaravelMangopay\ServiceProvider::class,
     ...
 ];
