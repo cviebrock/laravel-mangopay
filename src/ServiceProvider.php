@@ -85,6 +85,12 @@ class ServiceProvider extends IlluminateServiceProvider
             // Use the Laravel logger
 
             $api->setLogger($app['log']);
+            
+            // Set a custom storage strategy if set in config
+
+            if (! is_null($app['config']['mangopay']['StorageClass'])) {
+                $api->OAuthTokenManager->RegisterCustomStorageStrategy($app['config']['mangopay']['StorageClass']);
+            }
 
             // Set a default temp folder (can be overridden in the config,
             // but should be different for each environment according to
