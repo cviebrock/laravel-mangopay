@@ -89,7 +89,8 @@ class ServiceProvider extends IlluminateServiceProvider
             // Set a custom storage strategy if set in config
 
             if (! is_null($app['config']['mangopay']['StorageClass'])) {
-                $api->OAuthTokenManager->RegisterCustomStorageStrategy($app['config']['mangopay']['StorageClass']);
+                $storageClass = $app->make($app['config']['mangopay']['StorageClass']);
+                $api->OAuthTokenManager->RegisterCustomStorageStrategy($storageClass);
             }
 
             // Set a default temp folder (can be overridden in the config,
