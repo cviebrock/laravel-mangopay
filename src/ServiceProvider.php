@@ -85,7 +85,7 @@ class ServiceProvider extends IlluminateServiceProvider
             // Use the Laravel logger
 
             $api->setLogger($app['log']);
-            
+
             // Set a custom storage strategy if set in config
 
             if (! is_null($app['config']['mangopay']['StorageClass'])) {

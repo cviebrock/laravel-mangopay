@@ -37,7 +37,7 @@ return [
      * Set the cURL response timeout limit (in seconds)
      */
     // 'CurlResponseTimeout' => 80,
-    
+
     /**
      * Set the storage class.
      */
