@@ -38,4 +38,9 @@ return [
      */
     // 'CurlResponseTimeout' => 80,
 
+    /**
+     * Set the storage class.
+     */
+    // 'StorageClass' => null,
+
 ];
