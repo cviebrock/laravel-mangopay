@@ -4,7 +4,8 @@
  * These configuration options are not required.
  *
  * The properties below are set directly on MangoPay\MangoPayApi()->Config
- * during instantiation of the MangopayAPI class.
+ * during instantiation of the MangopayAPI class, unless otherwise specified
+ * in the docs below.
  *
  * @see \MangoPay\Libraries\Configuration
  */
@@ -40,6 +41,9 @@ return [
 
     /**
      * Set the storage class.
+     *
+     * This class name is instantiated and then passed to
+     * MangoPay\MangoPayApi()->OAuthTokenManager->RegisterCustomStorageStrategy()
      */
     // 'StorageClass' => null,
 

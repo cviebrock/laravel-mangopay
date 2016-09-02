@@ -88,8 +88,8 @@ class ServiceProvider extends IlluminateServiceProvider
 
             // Set a custom storage strategy if set in config
 
-            if (! is_null($app['config']['mangopay']['StorageClass'])) {
-                $storageClass = $app->make($app['config']['mangopay']['StorageClass']);
+            if ($storageClass = array_get($app['config'], 'mangopay.StorageClass', null)) {
+                $storageClass = $app->make($storageClass);
                 $api->OAuthTokenManager->RegisterCustomStorageStrategy($storageClass);
             }
 
@@ -102,8 +102,12 @@ class ServiceProvider extends IlluminateServiceProvider
 
             // Set any extra options specified in the configuration
 
-            if ($extras = $app['config']['mangopay']) {
-                foreach ($extras as $property => $value) {
+            $extras = array_get($app['config'], 'mangopay', []);
+            foreach ($extras as $property => $value) {
+                if ($property === 'StorageClass') {
+                    $storageClass = $app->make($value);
+                    $api->OAuthTokenManager->RegisterCustomStorageStrategy($storageClass);
+                } else {
                     $api->Config->{$property} = $value;
                 }
             }
