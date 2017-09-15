@@ -1,5 +1,5 @@
 {
-  "name": "alexisreverte/laravel-mangopay",
+  "name": "cviebrock/laravel-mangopay",
   "description": "Laravel/Lumen wrapper for the office Mangopay SDK library",
   "keywords": [
     "laravel",
