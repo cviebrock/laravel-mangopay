@@ -4,7 +4,7 @@ use Cviebrock\LaravelMangopay\ServiceProvider;
 use MangoPay\MangoPayApi;
 
 
-class ServiceProviderTestCase extends TestCase
+class ServiceProviderTest extends TestCase
 {
 
     /**
