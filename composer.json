@@ -35,5 +35,12 @@
   },
   "scripts": {
     "test": "phpunit"
+  },
+  "extra": {
+      "laravel": {
+          "providers": [
+              "Cviebrock\\LaravelMangopay\\ServiceProvider"
+          ]
+      }
   }
 }
