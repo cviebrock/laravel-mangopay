@@ -1,7 +1,11 @@
 <?php namespace Cviebrock\LaravelMangopay;
 
 use Cviebrock\LaravelMangopay\Commands\CreateDirectories;
+use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
+use Illuminate\Support\Str;
+use Illuminate\Foundation\Application as LaravelApplication;
+use Laravel\Lumen\Application as LumenApplication;
 use InvalidArgumentException;
 use MangoPay\MangoPayApi;
 
@@ -11,8 +15,8 @@ class ServiceProvider extends IlluminateServiceProvider
     /**
     * The Mangopay URLs used by the API
     */
-    const BASE_URL_SANDBOX = 'https://api.sandbox.mangopay.com';
-    const BASE_URL_PRODUCTION = 'https://api.mangopay.com';
+    public const BASE_URL_SANDBOX = 'https://api.sandbox.mangopay.com';
+    public const BASE_URL_PRODUCTION = 'https://api.mangopay.com';
     
     /**
     * Indicates if loading of the provider is deferred.
@@ -23,26 +27,24 @@ class ServiceProvider extends IlluminateServiceProvider
     
     /**
     * Determine if this is a Lumen application.
-    *
-    * @return bool
     */
-    protected function isLumen()
+    protected function isLumen(): bool
     {
-        return str_contains($this->app->version(), 'Lumen');
+        return Str::contains($this->app->version(), 'Lumen');
     }
     
     /**
     * Bootstrap the application services.
-    *
-    * @return void
     */
-    public function boot()
+    public function boot(): void
     {
-        if (!$this->isLumen()) {
-            $this->publishes([
-            __DIR__ . '/../resources/config/mangopay.php' => $this->app->configPath() . '/' . 'mangopay.php',
-            ], 'config');
+        $source = dirname(__DIR__) . '/resources/config/mangopay.php';
+        if ($this->app instanceof LaravelApplication) {
+            $this->publishes([$source => config_path('mangopay.php')], 'config');
+        } elseif ($this->app instanceof LumenApplication) {
+            $this->app->configure('mangopay');
         }
+        $this->mergeConfigFrom($source, 'mangopay');
     }
     
     /**
@@ -60,15 +62,15 @@ class ServiceProvider extends IlluminateServiceProvider
             
             // Set the client id and password
             
-            if (!$clientId = array_get($config, 'key')) {
+            if (!$clientId = Arr::get($config, 'key')) {
                 throw new InvalidArgumentException('Mangopay key not configured');
             }
             
-            if (!$clientPassword = array_get($config, 'secret')) {
+            if (!$clientPassword = Arr::get($config, 'secret')) {
                 throw new InvalidArgumentException('Mangopay secret not configured');
             }
             
-            if (!$env = array_get($config, 'env')) {
+            if (!$env = Arr::get($config, 'env')) {
                 throw new InvalidArgumentException('Mangopay environment not configured');
             }
             
@@ -85,7 +87,7 @@ class ServiceProvider extends IlluminateServiceProvider
             
             // Set a custom storage strategy if set in config
             
-            if ($storageClass = array_get($app['config'], 'mangopay.StorageClass', null)) {
+            if ($storageClass = Arr::get($app['config'], 'mangopay.StorageClass', null)) {
                 $storageClass = $app->make($storageClass);
                 $api->OAuthTokenManager->RegisterCustomStorageStrategy($storageClass);
             }
@@ -99,7 +101,7 @@ class ServiceProvider extends IlluminateServiceProvider
             
             // Set any extra options specified in the configuration
             
-            $extras = array_get($app['config'], 'mangopay', []);
+            $extras = Arr::get($app['config'], 'mangopay', []);
             foreach ($extras as $property => $value) {
                 if ($property === 'StorageClass') {
                     $storageClass = $app->make($value);

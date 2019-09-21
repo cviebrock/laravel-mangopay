@@ -6,5 +6,5 @@ if (!file_exists(__DIR__ . '/.test.env')) {
 
 require __DIR__ . '/vendor/autoload.php';
 
-$dotenv = new Dotenv\Dotenv(__DIR__, '.test.env');
+$dotenv = Dotenv\Dotenv::create(__DIR__, '.test.env');
 $dotenv->load();

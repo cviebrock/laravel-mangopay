@@ -1,5 +1,10 @@
 # Changelog
 
+## 6.0.0 - 20-Sep-2019
+
+- Support for Laravel 6.0 (drop support for earlier versions)
+
+
 ## 0.9.5 - 22-Mar-2018
 
 - Support for Laravel 5.6

@@ -1,3 +1,5 @@
+/.phpunit.result.cache
 /.test.env
-/vendor/
+/build
 /composer.lock
+/vendor

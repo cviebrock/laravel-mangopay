@@ -39,7 +39,7 @@ class CreateDirectories extends Command
     /**
      * Handle command.
      */
-    public function handle()
+    public function handle(): void
     {
 
         foreach ($this->getDirectories() as $directory) {

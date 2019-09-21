@@ -22,50 +22,61 @@ This package makes it easier (hopefully!) to integrate the official
 
 ## Installation
 
-Installation is done via Composer:
+Depending on your version of Laravel, you should install a different 
+version of the package. NOTE: As of version 6.0, the package's version 
+should match the Laravel version.
 
-```sh
-composer require cviebrock/laravel-mangopay
-```
+| Laravel Version | Package Version |
+|:---------------:|:---------------:|
+|       6.0       |      ^6.0       |
+|       5.*       |      ^0.9       |
 
 ### Laravel
 
-After updating composer, add the service provider to the providers array in `config/app.php`:
+1. Install the package via composer:
 
-```php
-'providers' => [
-    ...
-    Cviebrock\LaravelMangopay\ServiceProvider::class,
-    ...
-];
-```
+    ```sh
+    composer require cviebrock/laravel-mangopay:^6.0
+    ```
 
-Publish the package config to your application and generate the required
-temporary directories with the following artisan commands:
+    After updating composer, the package will automatically register its 
+    service provider.
 
-```sh
-php artisan vendor:publish --provider="Cviebrock\LaravelMangopay\ServiceProvider"
-php artisan mangopay:mkdir  
-```
+2.  Publish the configuration file:
+
+    ```sh
+    php artisan vendor:publish --provider="Cviebrock\LaravelMangopay\ServiceProvider"
+    ```
+
+3.  Finally, generate the required temporary directories:
+
+    ```sh
+    php artisan mangopay:mkdir  
+    ```
 
 
 ### Lumen
 
-For Lumen, copy the configuration file to your `config` folder and enable 
-everything in `bootstrap/app.php`:
+1. Install the package via composer:
 
-```php
-$app->configure('mangopay');
+    ```sh
+    composer require cviebrock/laravel-mangopay:^6.0
+    ```
 
-$app->register(Cviebrock\LaravelMangopay\ServiceProvider::class);
-```
+2.  Copy the configuration file to your `config` folder and enable 
+    everything in `bootstrap/app.php`:
 
-Generate the required temporary directories with the following artisan command:
+    ```php
+    $app->configure('mangopay');
 
-```sh
-php artisan mangopay:mkdir  
-```
+    $app->register(Cviebrock\LaravelMangopay\ServiceProvider::class);
+    ```
 
+3.  Generate the required temporary directories:
+
+    ```sh
+    php artisan mangopay:mkdir  
+    ```
 
 ## Configuration
 
@@ -74,11 +85,11 @@ in `config/services.php`. Add the following block to that file, and set the appr
 values in your `.env` file:
 
 ```php
-  'mangopay' => [
-      'env'    => env('MANGOPAY_ENV', 'sandbox'),  // or "production"
-      'key'    => env('MANGOPAY_KEY'),             // your Mangopay client ID
-      'secret' => env('MANGOPAY_SECRET'),          // your Mangopay client password
-  ],
+'mangopay' => [
+    'env'    => env('MANGOPAY_ENV', 'sandbox'),  // or "production"
+    'key'    => env('MANGOPAY_KEY'),             // your Mangopay client ID
+    'secret' => env('MANGOPAY_SECRET'),          // your Mangopay client password
+],
 ```
 
 The configuration file you can publish to `config/mangopay.php` provides additional
@@ -135,7 +146,11 @@ class MyController extends Illuminate\Routing\Controller
 ## Bugs, Suggestions and Contributions
 
 Thanks to [everyone](/cviebrock/laravel-mangopay/graphs/contributors) who has contributed 
-to this project!
+to this project!   Special thanks to 
+[JetBrains](https://www.jetbrains.com/?from=cviebrock/laravel-mangopay) for their 
+Open Source License Program ... and the excellent PHPStorm IDE, of course!
+
+[![JetBrains](./.github/jetbrains.svg)](https://www.jetbrains.com/?from=cviebrock/laravel-mangopay)
 
 Please use [Github](https://github.com/cviebrock/laravel-mangopay) for reporting bugs, 
 and making comments or suggestions.
