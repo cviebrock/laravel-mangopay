@@ -16,12 +16,12 @@
   "license": "MIT",
   "require": {
     "php": "^7.2",
-    "illuminate/support": "^6.0",
+    "illuminate/support": "^7.0",
     "mangopay/php-sdk-v2": "^2.4"
   },
   "require-dev": {
     "limedeck/phpunit-detailed-printer": "^5.0",
-    "orchestra/testbench": "4.*",
+    "orchestra/testbench": "5.*",
     "phpunit/phpunit": "^8.0"
   },
   "autoload": {

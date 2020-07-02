@@ -28,6 +28,7 @@ should match the Laravel version.
 
 | Laravel Version | Package Version |
 |:---------------:|:---------------:|
+|       7.0       |      ^7.0       |
 |       6.0       |      ^6.0       |
 |       5.*       |      ^0.9       |
 
@@ -36,7 +37,7 @@ should match the Laravel version.
 1. Install the package via composer:
 
     ```sh
-    composer require cviebrock/laravel-mangopay:^6.0
+    composer require cviebrock/laravel-mangopay
     ```
 
     After updating composer, the package will automatically register its 

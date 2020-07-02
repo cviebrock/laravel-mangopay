@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.0.0 - 02-Jul-2020
+
+- Support for Laravel 7.0 (drop support for earlier versions)
+
+
 ## 6.0.0 - 20-Sep-2019
 
 - Support for Laravel 6.0 (drop support for earlier versions)
