@@ -1,5 +1,11 @@
 # Changelog
 
+## 8.0.0 - 30-Sep-2020
+
+- Support for Laravel 8.0 (drop support for earlier versions)
+- Bump Mangopay SDK to version 3.1
+
+
 ## 7.0.0 - 02-Jul-2020
 
 - Support for Laravel 7.0 (drop support for earlier versions)
