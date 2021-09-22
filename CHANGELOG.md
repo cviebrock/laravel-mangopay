@@ -1,5 +1,10 @@
 # Changelog
 
+## 8.0.1 - 22-Sep-2021
+
+- Support PHP 8.0
+
+
 ## 8.0.0 - 30-Sep-2020
 
 - Support for Laravel 8.0 (drop support for earlier versions)
