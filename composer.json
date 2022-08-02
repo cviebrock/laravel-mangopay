@@ -16,8 +16,8 @@
   "license": "MIT",
   "require": {
     "php": "^7.3|^8.0",
-    "illuminate/support": "^8",
-    "mangopay/php-sdk-v2": "^3.1"
+    "illuminate/support": "^9",
+    "mangopay/php-sdk-v2": "^3.15"
   },
   "require-dev": {
     "limedeck/phpunit-detailed-printer": "^6.0",
