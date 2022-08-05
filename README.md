@@ -33,6 +33,7 @@ should match the Laravel version.
 
 | Laravel Version | Package Version |
 |:---------------:|:---------------:|
+|       9.0       |      ^9.0       |
 |       8.0       |      ^8.0       |
 |       7.0       |      ^7.0       |
 |       6.0       |      ^6.0       |
