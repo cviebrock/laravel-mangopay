@@ -3,6 +3,11 @@
 This package makes it easier (hopefully!) to integrate the official
 [Mangopay SDK](https://github.com/Mangopay/mangopay2-php-sdk) into your Laravel and Lumen applications.
 
+> ## ⚠️ This Package Will Be Abandoned
+> Due to several factors, including the fact that I no longer use Mangopay,
+> I will be ceasing development on this package.  If you are interested in
+> taking over this project, please reach out to me here in the Issues board.
+
 [![Build Status](https://travis-ci.org/cviebrock/laravel-mangopay.svg?branch=master&format=flat)](https://travis-ci.org/cviebrock/laravel-mangopay)
 [![Total Downloads](https://poser.pugx.org/cviebrock/laravel-mangopay/downloads?format=flat)](https://packagist.org/packages/cviebrock/laravel-mangopay)
 [![Latest Stable Version](https://poser.pugx.org/cviebrock/laravel-mangopay/v/stable?format=flat)](https://packagist.org/packages/cviebrock/laravel-mangopay)
